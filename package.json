@@ -2,7 +2,7 @@
   "name": "photogallery",
   "version": "1.0.0",
   "description": "Shopping Application",
-  "main": "index.js",
+ 
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
