@@ -9,9 +9,14 @@
     top: 0;
     z-index: 10;
 }
+.header-items a{
+    text-decoration: none;
+    color: unset;
+}
+
 .logo{
     border-radius: 50% ;
-    height: inherit;
+    height: 80px;
 }
 .logo-name{
     font-family: cursive;
@@ -28,7 +33,7 @@
     height : 100px ; 
     width: 200px;
     position: fixed;
-    z-index: 5;
+    z-index: 6;
     right: 0;
 }
 
@@ -107,7 +112,6 @@
 }
 
 .filter-container{
-    /* height: 300px; */
     overflow-y: hidden;
     animation: open 0.01s ease-in-out ;
 }
@@ -119,10 +123,17 @@
     height: 400px;
     width: 100% ;
 }
-.image-container div{
+.download{
     background-color: white;
     top : 10px ;
     right: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.heart{
+    background-color: white;
+    top : 10px ;
+    right: 60px;
     cursor: pointer;
     border-radius: 10px;
 }
@@ -133,10 +144,12 @@
     transform: scale(1.3);
     transition:transform 1s ease-in-out;
 }
-.clicked-button{
+.clicked-button-dark{
     border: 2px solid rgba(0, 0, 0, 0.593) !important;
 }
-
+.clicked-button-light{
+    border: 2px solid white !important;
+}
 .pagination button{
     background-image: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
     height: 50px;

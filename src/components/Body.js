@@ -3,13 +3,16 @@ import { API_KEY } from "../config";
 import Shimmer from "./Shimmer";
 import {saveAs} from "file-saver";
 import Theme from "../context/Theme";
+import Image from "./Image";
 
 const Body = () =>{
 
     const [displayImages , setDisplayImages] = useState(null) ; 
     const [page , setPage] = useState(1) ;
     const [filterChoice , setFilterChoice] = useState("") ; 
-    const [filterDisplay , setFilterDisplay] = useState(false) ;  
+    const [filterDisplay , setFilterDisplay] = useState(false) ; 
+     
+ 
     const filters = ["Nature" , "Moon" , "Plants" , "Animals" , "Monuments" , "Forests" , "Fashion" , "Food" , "Oceans" , "Sky" , "Music" , "Night" , "Desserts" , "Dance" , "Books" , "Wedding" , "Houses" , "Cities"].sort() ; 
     const {theme} = useContext(Theme) ;
    
@@ -26,13 +29,12 @@ const Body = () =>{
         }
         const response_json =  await response.json() ;
         setDisplayImages(response_json.hits) ;
-        console.log(response_json) ;
     }
 
     useEffect(()=>{
         displayImageFetch() ; 
          
-    }, [page , filterChoice ])
+    }, [page , filterChoice])
 
     return (
 
@@ -53,10 +55,11 @@ const Body = () =>{
             {filterDisplay && <div className="filter-container d-flex flex-wrap justify-content-center gap-5 pb-5 fs-6">
                 {
                     filters.map((filter , index)=>{
-                        return <button  data-value = {filter} className={"col-4 col-md-3 col-lg-1    filter-button "+(filterChoice === filter ? 'clicked-button' : '')}
+                        return <button  data-value = {filter} className={"col-4 col-md-3 col-lg-1    filter-button "+(filterChoice === filter ? theme === 'dark' ? "clicked-button-light" : "clicked-button-dark" : '')}
                         onClick={(e)=>{
                             setFilterChoice(e.target.dataset.value)
-                            setPage(1) ; 
+                            setPage(1) ;  
+                            
                 }} key = {index} >{filter}</button>
                     })
                 }
@@ -69,23 +72,7 @@ const Body = () =>{
                 displayImages === null && displayImages?.length !== 0  ? <Shimmer/> :  
                 
                 displayImages?.map((image)=>{
-                    return(
-                        <div className="position-relative col-10 col-sm-5 col-lg-3 box-shadow image-container" height="300px">
-                            <img src= {image.largeImageURL} onMouseOver={(e)=>{
-                                e.target.classList.add("scale") ;
-                            }} onMouseOut={(e)=>{
-                                e.target.classList.remove("scale") ;
-                            }} ></img> 
-                            <div className="position-absolute fs-5 text-secondary px-2">
-                                <i className = "fa-solid fa-arrow-down" onClick = {()=>{
-                                    
-                                    saveAs(image?.largeImageURL, image.user);
-                                }} ></i> 
-                            </div>
-                            
-                        </div>
-                        
-                    )
+                    return <Image image = {image}/>
                 })
             }
 

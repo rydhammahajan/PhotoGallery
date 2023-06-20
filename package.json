@@ -2,7 +2,6 @@
   "name": "photogallery",
   "version": "1.0.0",
   "description": "Shopping Application",
- 
   "scripts": {
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
@@ -26,6 +25,7 @@
     "bootstrap": "^5.3.0",
     "file-saver": "^2.0.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.13.0"
   }
 }

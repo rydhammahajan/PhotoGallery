@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import Theme from "../context/Theme";
+import { Link } from "react-router-dom";
 const Header = ()=>{
 
     const {theme , setTheme} = useContext(Theme) ;
@@ -16,10 +17,11 @@ const Header = ()=>{
         <>
         <div id = "header" className={"d-flex  justify-content-between px-md-5 px-3 " + (theme === "light" ? "bg-light" : "dark text-light")} >
 
-            <img src= {require("../assests/gallery.png")} className="logo p-1 pt-3"></img>
+            <Link to= ""><img src= {require("../assests/gallery.png")} className="logo p-1 pt-3"></img></Link>
 
             <ul className="header-items d-none d-md-flex gap-5 p-4 fs-6 ">
-                <li><i className="fas fa-heart pe-2"></i>My Collection</li>
+                <Link to = "/my-collection"><li><i className="fas fa-heart pe-2"></i>My Collection</li></Link>
+
                 <li onClick={()=>{
                     if(theme !== "light") {
                         setTheme("light")
@@ -36,7 +38,9 @@ const Header = ()=>{
         </div>
         {sideBarDisplay && <div className="hamburger d-md-none">
         <ul className={"header-items gap-5 p-4 fs-6 " + (theme === "light" ? "bg-light" : "dark text-light")}>
-                <li><i className="fas fa-heart pe-2"></i>My Collection</li>
+                <Link to = "/my-collection"><li><i className="fas fa-heart pe-2 pb-4"></i>My Collection</li></Link>
+
+
                 <li onClick={()=>{
                     if(theme !== "light") {
                         setTheme("light")
